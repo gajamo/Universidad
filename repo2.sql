@@ -5,15 +5,6 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
--- -----------------------------------------------------
 -- Schema repo
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `repo` ;
@@ -22,7 +13,7 @@ DROP SCHEMA IF EXISTS `repo` ;
 -- Schema repo
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `repo` DEFAULT CHARACTER SET latin1 ;
-USE `mydb` ;
+USE `repo` ;
 
 -- -----------------------------------------------------
 -- Table `repo`.`area`
@@ -47,9 +38,9 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `mydb`.`material`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`material` ;
+DROP TABLE IF EXISTS `repo`.`material` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`material` (
+CREATE TABLE IF NOT EXISTS `repo`.`material` (
   `idmaterial` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NULL,
   `descripcion` VARCHAR(45) NULL,
@@ -61,9 +52,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`contenidoXArea`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`contenidoXArea` ;
+DROP TABLE IF EXISTS `repo`.`contenidoXArea` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`contenidoXArea` (
+CREATE TABLE IF NOT EXISTS `repo`.`contenidoXArea` (
   `idcontenidoXArea` INT NOT NULL AUTO_INCREMENT,
   `area_idarea` INT(11) NOT NULL,
   `material_idmaterial` INT NOT NULL,
@@ -86,9 +77,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`autor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`autor` ;
+DROP TABLE IF EXISTS `repo`.`autor` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`autor` (
+CREATE TABLE IF NOT EXISTS `repo`.`autor` (
   `idautor` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `nacionalidad` VARCHAR(45) NOT NULL,
@@ -99,9 +90,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`metadato`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`metadato` ;
+DROP TABLE IF EXISTS `repo`.`metadato` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`metadato` (
+CREATE TABLE IF NOT EXISTS `repo`.`metadato` (
   `material_idmaterial` INT NOT NULL,
   `tipo` VARCHAR(45) NULL,
   `fechaIngreso` DATE NULL,
@@ -123,9 +114,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`contenidoXAutor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`contenidoXAutor` ;
+DROP TABLE IF EXISTS `repo`.`contenidoXAutor` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`contenidoXAutor` (
+CREATE TABLE IF NOT EXISTS `repo`.`contenidoXAutor` (
   `autor_idautor` INT NOT NULL,
   `material_idmaterial` INT NOT NULL,
   INDEX `fk_contenidoXAutor_autor1_idx` (`autor_idautor` ASC),
@@ -146,9 +137,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`usuario`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`usuario` ;
+DROP TABLE IF EXISTS `repo`.`usuario` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
+CREATE TABLE IF NOT EXISTS `repo`.`usuario` (
   `idusuario` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `constrasena` VARCHAR(45) NOT NULL,

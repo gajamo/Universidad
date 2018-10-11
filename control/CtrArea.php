@@ -4,39 +4,32 @@
 	var $recordSet;
         function CtrArea($objArea){
 
-        $this-> objArea=$objArea;
+            $this->objArea=$objArea;
         }
-
 
         function guardar(){
 
-        $idarea=$this->objArea->getIdarea();
-    	 $nombre=$this->objArea->getNombre();
-        $fkarea=$this->objArea->getFkarea();
+            $idarea=$this->objArea->getIdarea();
+    	    $nombre=$this->objArea->getNombre();
+            $fkarea=$this->objArea->getFkarea();
+        
+            $bd="repo";
+            $ObjConexion=new CtrConexion();
+            $enlace=$ObjConexion->conectar('localhost',$bd,'root','');
 
-       
+            $consulta="insert into area values(".$idarea.",'".$nombre."',".$fkarea.")";
 
-        $bd="repo";
-        $ObjConexion=new CtrConexion();
-        $enlace=$ObjConexion->conectar('localhost',$bd,'root','');
+		    $recordSet=$ObjConexion->ejecutarSql($bd,$consulta);
+            $ObjConexion->cerrar($enlace);
 
-
-        $consulta="insert into area values(".$idarea.",'".$nombre."',".$fkarea.")";
-         echo " Comando SQL : ". $consulta;
-		$recordSet=$ObjConexion->ejecutarSql($bd,$consulta);
-         $ObjConexion->cerrar($enlace);
-
-		if (!$recordSet)
-		{
-			die(" ERROR CON EL COMANDO SQL: ".mysql_error());
-		}
-		else
-		{
-		
-	$this->recordSet=$recordSet;
-
-		}
-
+		    if (!$recordSet)
+		    {
+			    die(" ERROR CON EL COMANDO SQL: ".mysql_error());
+		    }
+		    else
+		    {
+	            $this->recordSet=$recordSet;
+		    }   
         }
 
 
